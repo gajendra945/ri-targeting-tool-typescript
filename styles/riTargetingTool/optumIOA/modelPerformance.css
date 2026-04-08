@@ -1,0 +1,193 @@
+.ri-optum-ioa-model-page {
+  padding-top: 0;
+  background: transparent;
+}
+
+.ri-optum-ioa-model-page .ri-model-card-grid {
+  display: grid;
+  gap: 16px;
+}
+
+.ri-optum-ioa-model-page .ri-model-card {
+  border: 1px solid #d7dee7;
+  background: #fff;
+  min-width: 0;
+}
+
+.ri-optum-ioa-model-page .ri-model-card-header {
+  padding: 6px 12px;
+  background: #1f5aa4;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.ri-optum-ioa-model-page .ri-model-card-body {
+  padding: 10px 12px 8px;
+}
+
+.ri-optum-ioa-model-page .ri-model-card-body--ranking {
+  position: relative;
+}
+
+.ri-optum-ioa-model-page .ri-model-axis-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.ri-optum-ioa-model-page .ri-model-axis-copy {
+  margin: 0;
+  color: #4a4f58;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.ri-optum-ioa-model-page .ri-model-axis-copy--right {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.ri-optum-ioa-model-page .ri-model-axis-copy--chart-right {
+  position: absolute;
+  top: -20px;
+  right: 0;
+  white-space: nowrap;
+}
+
+.ri-optum-ioa-model-page .ri-model-ranking-shell {
+  position: relative;
+}
+
+.ri-optum-ioa-model-page .ri-model-chart-shell {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 252px;
+  gap: 16px;
+  align-items: stretch;
+}
+
+.ri-optum-ioa-model-page .ri-model-callout {
+  position: absolute;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  color: #5f6874;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1.1;
+  pointer-events: none;
+}
+
+.ri-optum-ioa-model-page .ri-model-callout-line {
+  position: absolute;
+  z-index: 2;
+  height: 1.4px;
+  background: #6b7280;
+  transform-origin: left center;
+  pointer-events: none;
+}
+
+.ri-optum-ioa-model-page .ri-model-callout-dot {
+  position: absolute;
+  z-index: 2;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #6b7280;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.ri-optum-ioa-model-page .ri-model-chart-stage {
+  min-width: 0;
+  width: 100%;
+}
+
+.ri-optum-ioa-model-page .ri-model-legend-shell {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.ri-optum-ioa-model-page .ri-model-legend-title {
+  margin: 0;
+  color: #2f3743;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.ri-optum-ioa-model-page .ri-model-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-self: center;
+  width: max-content;
+  max-width: 100%;
+}
+
+.ri-optum-ioa-model-page .ri-model-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #4a4f58;
+  font-size: 11px;
+  line-height: 1.25;
+}
+
+.ri-optum-ioa-model-page .ri-model-legend-label {
+  max-width: 220px;
+}
+
+.ri-optum-ioa-model-page .ri-model-legend-line {
+  width: 22px;
+  min-width: 22px;
+  margin-top: 0;
+  border-top: 2px solid var(--ri-legend-color);
+}
+
+.ri-optum-ioa-model-page .ri-model-legend-line--dash {
+  border-top-style: dashed;
+}
+
+.ri-optum-ioa-model-page .ri-model-chart--ranking {
+  height: 240px;
+}
+
+.ri-optum-ioa-model-page .ri-model-chart--monthly {
+  height: 246px;
+  position: relative;
+}
+
+@media (max-width: 1100px) {
+  .ri-optum-ioa-model-page .ri-model-chart-shell {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .ri-optum-ioa-model-page .ri-model-legend {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px 14px;
+    align-self: start;
+    width: auto;
+  }
+
+  .ri-optum-ioa-model-page .ri-model-legend-shell {
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+
+  .ri-optum-ioa-model-page .ri-model-chart--ranking,
+  .ri-optum-ioa-model-page .ri-model-chart--monthly {
+    height: 280px;
+  }
+}

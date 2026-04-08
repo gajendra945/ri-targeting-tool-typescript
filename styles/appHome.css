@@ -1,0 +1,305 @@
+.app-home-shell {
+  min-height: 100vh;
+  padding: 40px 28px 56px;
+  background:
+    radial-gradient(circle at top left, rgba(32, 111, 176, 0.18), transparent 28%),
+    linear-gradient(180deg, #f4f8fb 0%, #eef2f6 100%);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.app-home-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(280px, 0.8fr);
+  gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto 28px;
+}
+
+.app-home-hero-copy,
+.app-home-hero-panel {
+  border: 1px solid rgba(29, 78, 137, 0.12);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 18px 44px rgba(34, 56, 79, 0.08);
+}
+
+.app-home-hero-copy {
+  padding: 32px;
+}
+
+.app-home-eyebrow,
+.app-placeholder-eyebrow {
+  margin: 0 0 10px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #1f5a99;
+}
+
+.app-home-title,
+.app-placeholder-title {
+  margin: 0;
+  font-size: 42px;
+  line-height: 1.05;
+  color: #173f6f;
+}
+
+.app-home-description,
+.app-placeholder-summary,
+.app-placeholder-block-copy {
+  margin: 16px 0 0;
+  font-size: 16px;
+  line-height: 1.7;
+  color: #46576c;
+}
+
+.app-home-hero-panel {
+  padding: 22px;
+  display: grid;
+  gap: 14px;
+  align-content: center;
+}
+
+.app-home-stat-card {
+  border-radius: 18px;
+  padding: 18px;
+  background: linear-gradient(135deg, #173f6f 0%, #2364aa 100%);
+  color: #fff;
+}
+
+.app-home-stat-label {
+  display: block;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.82;
+}
+
+.app-home-stat-value {
+  display: block;
+  margin-top: 8px;
+  font-size: 28px;
+  line-height: 1.1;
+}
+
+.app-product-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.app-product-card,
+.app-placeholder-card {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(29, 78, 137, 0.12);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 16px 40px rgba(31, 49, 69, 0.08);
+}
+
+.app-product-card {
+  padding: 22px;
+  display: grid;
+  gap: 18px;
+}
+
+.app-product-card::before,
+.app-placeholder-card::before {
+  content: '';
+  position: absolute;
+  inset: 0 auto auto 0;
+  width: 100%;
+  height: 6px;
+  background: linear-gradient(90deg, #2364aa 0%, #7ec4cf 100%);
+}
+
+.app-product-card--primary::before {
+  background: linear-gradient(90deg, #173f6f 0%, #2f80b8 100%);
+}
+
+.app-product-card--teal::before,
+.app-placeholder-card--teal::before {
+  background: linear-gradient(90deg, #117c8d 0%, #79d4da 100%);
+}
+
+.app-product-card--amber::before,
+.app-placeholder-card--amber::before {
+  background: linear-gradient(90deg, #a65b11 0%, #f1b866 100%);
+}
+
+.app-product-card--slate::before,
+.app-placeholder-card--slate::before {
+  background: linear-gradient(90deg, #364152 0%, #7c8ca1 100%);
+}
+
+.app-product-card-top {
+  display: grid;
+  gap: 10px;
+}
+
+.app-product-status {
+  display: inline-flex;
+  width: fit-content;
+  border-radius: 999px;
+  background: #eef4fb;
+  padding: 6px 10px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #1f5a99;
+}
+
+.app-product-title {
+  margin: 0;
+  font-size: 24px;
+  line-height: 1.15;
+  color: #1f3045;
+}
+
+.app-product-description {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.65;
+  color: #556679;
+}
+
+.app-product-highlights {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 8px;
+}
+
+.app-product-highlights li {
+  position: relative;
+  padding-left: 18px;
+  font-size: 13px;
+  color: #30445d;
+}
+
+.app-product-highlights li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: #2f80b8;
+}
+
+.app-product-button,
+.app-placeholder-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease,
+    background-color 0.18s ease;
+}
+
+.app-product-button {
+  background: #173f6f;
+  color: #fff;
+  box-shadow: 0 10px 24px rgba(23, 63, 111, 0.18);
+}
+
+.app-product-button:hover,
+.app-placeholder-button:hover {
+  transform: translateY(-1px);
+}
+
+.app-placeholder-shell {
+  min-height: 100vh;
+  padding: 40px 28px;
+  background:
+    radial-gradient(circle at top right, rgba(32, 111, 176, 0.16), transparent 26%),
+    linear-gradient(180deg, #f4f8fb 0%, #eef2f6 100%);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.app-placeholder-card {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 30px;
+}
+
+.app-placeholder-block {
+  margin-top: 24px;
+  border-radius: 18px;
+  background: #f6f8fb;
+  padding: 20px;
+}
+
+.app-placeholder-block-title {
+  margin: 0;
+  font-size: 18px;
+  color: #1f3045;
+}
+
+.app-placeholder-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 28px;
+}
+
+.app-placeholder-button {
+  padding: 0 16px;
+}
+
+.app-placeholder-button--primary {
+  background: #173f6f;
+  color: #fff;
+}
+
+.app-placeholder-button--secondary {
+  border: 1px solid #c7d2df;
+  background: #fff;
+  color: #1f3045;
+}
+
+@media (max-width: 1100px) {
+  .app-home-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .app-product-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 700px) {
+  .app-home-shell,
+  .app-placeholder-shell {
+    padding: 22px 16px 36px;
+  }
+
+  .app-home-hero-copy,
+  .app-home-hero-panel,
+  .app-product-card,
+  .app-placeholder-card {
+    border-radius: 20px;
+  }
+
+  .app-home-title,
+  .app-placeholder-title {
+    font-size: 30px;
+  }
+
+  .app-product-grid {
+    grid-template-columns: 1fr;
+  }
+}

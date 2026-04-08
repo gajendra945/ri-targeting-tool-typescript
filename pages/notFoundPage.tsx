@@ -1,0 +1,16 @@
+import React from 'react'
+import { Link } from 'react-router-dom'
+
+const NotFound = () => (
+  <main className="ri-notfound-wrap">
+    <section className="ri-notfound-card">
+      <h1 className="ri-notfound-code">404</h1>
+      <p className="ri-notfound-text">Page not found.</p>
+      <Link to="/" className="ri-notfound-btn">
+        Go to Product Hub
+      </Link>
+    </section>
+  </main>
+)
+
+export default NotFound
