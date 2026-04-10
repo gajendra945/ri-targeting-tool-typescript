@@ -66,9 +66,10 @@ const normalizeFilters = (candidateFilters: Partial<FilterValues> = {}): FilterV
   filterDefinitions.reduce<FilterValues>((accumulator, filterDefinition) => {
     const candidateValue = candidateFilters[filterDefinition.key]
 
-    accumulator[filterDefinition.key] = filterDefinition.options.includes(candidateValue)
-      ? candidateValue
-      : defaultFilterValues[filterDefinition.key]
+    accumulator[filterDefinition.key] =
+      typeof candidateValue === 'string' && filterDefinition.options.includes(candidateValue)
+        ? candidateValue
+        : defaultFilterValues[filterDefinition.key]
 
     return accumulator
   }, { ...defaultFilterValues })
