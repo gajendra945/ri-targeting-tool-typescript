@@ -1,4 +1,5 @@
 import React from 'react'
+import type { ReactNode } from 'react'
 import { Line, LineChart, ReferenceLine, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
 import { ProductPageLayout } from '../../component/productPageLayout'
 import { ProductPageStrip } from '../../component/topFilterRow'
@@ -78,9 +79,14 @@ type ModelLegendProps = {
   items: ChartSeries[]
 }
 
+type TooltipValue = number | string | Array<number | string>
+
 const getColor = (token: PaletteToken) => palette[token] ?? palette.text
 const formatMoney = (value: number | string | null) => `${value ?? 0}`
-const formatTooltipValue = (value: number | string | null, name: string) => [String(name).includes('Error') ? `${value}%` : formatMoney(value), name]
+const formatTooltipValue = (value: TooltipValue, name: string): [ReactNode, string] => {
+  const normalizedValue = Array.isArray(value) ? value[0] : value
+  return [String(name).includes('Error') ? `${normalizedValue}%` : formatMoney(normalizedValue), name]
+}
 
 const buildTicks = (min = 0, max = 0, interval = 1) => {
   const ticks = []
