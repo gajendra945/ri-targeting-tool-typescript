@@ -17,9 +17,70 @@ const palette = {
   errorPrevious: '#b3b3b3',
 }
 
-const getColor = (token) => palette[token] ?? palette.text
-const formatMoney = (value) => `$${value}`
-const formatTooltipValue = (value, name) => [String(name).includes('Error') ? `${value}%` : formatMoney(value), name]
+type PaletteToken = keyof typeof palette
+
+type AxisConfig = {
+  min: number
+  max: number
+  interval: number
+}
+
+type ChartSeries = {
+  key: string
+  name: string
+  colorToken: PaletteToken
+  data: Array<number | null>
+  smooth?: number
+  dash?: boolean
+  axis?: 'left' | 'right'
+  showSymbol?: boolean
+}
+
+type RankingCallout = {
+  key: string
+  lines: string[]
+  textLeft: string
+  textTop: string
+  lineLeft: string
+  lineTop: string
+  lineWidth: string
+  lineRotate: number
+  dotLeft: string
+  dotTop: string
+}
+
+type RankingChart = {
+  title: string
+  yAxisLabel: string
+  xAxisLabel: string
+  categories: string[]
+  yAxis: AxisConfig
+  callouts: RankingCallout[]
+  series: ChartSeries[]
+}
+
+type MonthlyChart = {
+  title: string
+  leftAxisLabel: string
+  rightAxisLabel: string
+  categories: string[]
+  leftAxis: AxisConfig
+  rightAxis: AxisConfig
+  series: ChartSeries[]
+}
+
+type ModelPerformanceData = {
+  rankingChart: RankingChart
+  monthlyChart: MonthlyChart
+}
+
+type ModelLegendProps = {
+  items: ChartSeries[]
+}
+
+const getColor = (token: PaletteToken) => palette[token] ?? palette.text
+const formatMoney = (value: number | string | null) => `${value ?? 0}`
+const formatTooltipValue = (value: number | string | null, name: string) => [String(name).includes('Error') ? `${value}%` : formatMoney(value), name]
 
 const buildTicks = (min = 0, max = 0, interval = 1) => {
   const ticks = []
@@ -31,9 +92,9 @@ const buildTicks = (min = 0, max = 0, interval = 1) => {
   return ticks
 }
 
-const createChartData = (categories = [], series = []) =>
+const createChartData = (categories: string[] = [], series: ChartSeries[] = []) =>
   categories.map((category, index) => {
-    const row = { category }
+    const row: Record<string, string | number | null> = { category }
 
     series.forEach((item) => {
       row[item.key] = item.data?.[index] ?? null
@@ -42,7 +103,7 @@ const createChartData = (categories = [], series = []) =>
     return row
   })
 
-const renderRankingCallouts = (callouts = []) =>
+const renderRankingCallouts = (callouts: RankingCallout[] = []) =>
   callouts.map((item) => (
     <React.Fragment key={item.key}>
       <div className="ri-model-callout" style={{ left: item.textLeft, top: item.textTop }}>
@@ -63,7 +124,7 @@ const renderRankingCallouts = (callouts = []) =>
     </React.Fragment>
   ))
 
-function ModelLegend({ items }) {
+function ModelLegend({ items }: ModelLegendProps) {
   return (
     <div className="ri-model-legend-shell">
       <div className="ri-model-legend" role="list" aria-label="Chart legend">
@@ -81,7 +142,7 @@ function ModelLegend({ items }) {
   )
 }
 
-const modelPerformanceData = {
+const modelPerformanceData: ModelPerformanceData = {
   rankingChart: {
     title: 'Member ranking and expected incremental value/HHV',
     yAxisLabel: 'Expected avg value coming from HHV',
@@ -187,9 +248,9 @@ const modelPerformanceData = {
   },
 }
 
-function SignifyHHVModelPerformanceContent({ data }) {
-  const ranking = data?.rankingChart ?? {}
-  const monthly = data?.monthlyChart ?? {}
+function SignifyHHVModelPerformanceContent({ data }: { data: ModelPerformanceData }) {
+  const ranking = data.rankingChart
+  const monthly = data.monthlyChart
   const rankingData = createChartData(ranking.categories, ranking.series)
   const monthlyData = createChartData(monthly.categories, monthly.series)
 

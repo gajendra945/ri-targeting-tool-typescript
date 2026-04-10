@@ -4,6 +4,19 @@ import { ProductPageLayout } from '../../component/productPageLayout'
 import { ProductPageStrip } from '../../component/topFilterRow'
 import '../../styles/signifyYtdSuppressionStats.css'
 
+type CellTone = string
+
+type LegendItem = {
+  label: string
+  color: string
+  kind: 'square' | 'line'
+  dash?: boolean
+}
+
+type YTDLegendProps = {
+  items: LegendItem[]
+  className?: string
+}
 const financialRows = [
   { label: '# members currently suppressed', goal: '31k', ytd: '339k', forecast: '362k', forecastTone: 'green' },
   { label: '# of members released', goal: '406k', ytd: '271k', forecast: '386k', forecastTone: 'green' },
@@ -77,9 +90,15 @@ const buildTicks = (min = 0, max = 0, interval = 1) => {
   return ticks
 }
 
-const formatPercent = (value) => `${Number(value).toFixed(2).replace(/\.00$/, '')}%`
-const formatPercentValue = (value) => `${value}%`
-const getCellToneClass = (tone) => (tone ? `ri-ytd-cell ri-ytd-cell--${tone}` : undefined)
+const formatPercent = (value: number | string | Array<number | string>) => {
+  const normalizedValue = Array.isArray(value) ? value[0] : value
+  return `${Number(normalizedValue).toFixed(2).replace(/\.00$/, '')}%`
+}
+const formatPercentValue = (value: number | string | Array<number | string>) => {
+  const normalizedValue = Array.isArray(value) ? value[0] : value
+  return `${normalizedValue}%`
+}
+const getCellToneClass = (tone?: CellTone) => (tone ? `ri-ytd-cell ri-ytd-cell--${tone}` : undefined)
 
 const impactData = completionChart.groups.map((group) => ({
   label: group.label,
@@ -93,7 +112,7 @@ const monitoringData = monitoringChart.months.map((month, index) => ({
   treatmentHigh: monitoringChart.treatmentHigh[index],
 }))
 
-function YTDLegend({ items, className = '' }) {
+function YTDLegend({ items, className = '' }: YTDLegendProps) {
   return (
     <div className={`ri-ytd-chart-legend ${className}`.trim()} role="list" aria-label="Chart legend">
       {items.map((item) => (

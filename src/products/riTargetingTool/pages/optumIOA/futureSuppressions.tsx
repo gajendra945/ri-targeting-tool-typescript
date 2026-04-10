@@ -4,9 +4,23 @@ import { ProductPageLayout } from '../../component/productPageLayout'
 import { ProductPageStrip } from '../../component/topFilterRow'
 import '../../styles/optumFutureSuppressions.css'
 
-const formatMemberCount = (value) => new Intl.NumberFormat('en-US').format(value)
+type ThresholdDatum = {
+  key: string
+  displayLabel: string
+  keepTargeting: number
+  newSuppressions: number
+  keepSuppression: number
+  releases: number
+}
 
-const thresholdData = [
+type FutureLegendItem = {
+  key: string
+  label: string
+  swatchClassName: string
+}
+const formatMemberCount = (value: number | string) => new Intl.NumberFormat('en-US').format(Number(value))
+
+const thresholdData: ThresholdDatum[] = [
   { key: '1', displayLabel: '1', keepTargeting: 0, newSuppressions: 0, keepSuppression: 19000, releases: 0 },
   { key: '2', displayLabel: '2', keepTargeting: 0, newSuppressions: 1700, keepSuppression: 23000, releases: 0 },
   { key: '3', displayLabel: '3', keepTargeting: 0, newSuppressions: 1600, keepSuppression: 24800, releases: 0 },
@@ -43,14 +57,14 @@ const thresholdData = [
   { key: '100', displayLabel: '100', keepTargeting: 19500, newSuppressions: 0, keepSuppression: 0, releases: 0 },
 ]
 
-const legendItems = [
+const legendItems: FutureLegendItem[] = [
   { key: 'keep-targeting', label: 'Keep in Targeting', swatchClassName: 'ri-future-threshold-swatch--pattern' },
   { key: 'new-suppressions', label: 'New Suppressions', swatchClassName: 'ri-future-threshold-swatch--new' },
   { key: 'keep-suppression', label: 'Keep in Suppression List', swatchClassName: 'ri-future-threshold-swatch--keep' },
   { key: 'releases', label: 'Releases', swatchClassName: 'ri-future-threshold-swatch--release' },
 ]
 
-const getDisplayLabel = (key) => thresholdData.find((item) => item.key === key)?.displayLabel ?? key
+const getDisplayLabel = (key: string) => thresholdData.find((item) => item.key === key)?.displayLabel ?? key
 
 function FutureSuppressionThresholdChart() {
   return (
