@@ -1,8 +1,8 @@
 import React from 'react'
 import { Bar, BarChart, ReferenceLine, ResponsiveContainer, XAxis, YAxis } from 'recharts'
 import { ProductPageLayout } from '../../component/productPageLayout'
-import { ProductPageStrip } from '../../component/productPageStrip'
-import '../../styles/riTargetingTool/signifyHHV/futureSuppressions.css'
+import { ProductPageStrip } from '../../component/topFilterRow'
+import '../../styles/signifyFutureSuppressions.css'
 
 const formatMemberCount = (value) => new Intl.NumberFormat('en-US').format(value)
 
@@ -142,3 +142,4 @@ const SignifyHHVFutureSuppressionsPage = () => {
 }
 
 export default SignifyHHVFutureSuppressionsPage
+

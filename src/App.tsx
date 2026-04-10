@@ -1,6 +1,6 @@
 import React from 'react'
 import { BrowserRouter } from 'react-router-dom'
-import { RiTargetingToolRoutes } from './routes'
+import { RiTargetingToolRoutes } from './products/riTargetingTool/routes'
 
 type AppErrorBoundaryProps = {
   children: React.ReactNode

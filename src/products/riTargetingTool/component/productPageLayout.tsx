@@ -1,8 +1,7 @@
 import React from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import { riTargetingToolRoutes } from '../routes/constants'
-import { MainPageLayout } from './mainPageLayout'
-import '../styles/riTargetingTool/homePage.css'
+import '../styles/homePage.css'
 
 const OverviewIcon = () => (
   <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -84,61 +83,60 @@ export function ProductPageLayout({ children }: ProductPageLayoutProps) {
   const isOverviewActive = normalizedPath === riTargetingToolRoutes.home
 
   return (
-    <MainPageLayout>
-      <section className="ri-main-grid">
-        <aside className="ri-sidebar">
-          <h2 className="ri-sidebar-title">RI targeting Tool</h2>
+    <main className="ri-app-shell">
+      <section className="ri-app-frame">
+        <section className="ri-main-grid">
+          <aside className="ri-sidebar">
+            <h2 className="ri-sidebar-title">RI Targeting Tool</h2>
 
-          <div className="ri-overview-row">
-            <span className="ri-icon-cell">
-              <OverviewIcon />
-            </span>
-            <NavLink
-              end
-              to={riTargetingToolRoutes.home}
-              className={() => `ri-overview-btn ${isOverviewActive ? 'is-active' : ''}`}
-            >
-              Overview
-            </NavLink>
-          </div>
+            <div className="ri-overview-row">
+              <span className="ri-icon-cell">
+                <OverviewIcon />
+              </span>
+              <NavLink
+                end
+                to={riTargetingToolRoutes.home}
+                className={() => `ri-overview-btn ${isOverviewActive ? 'is-active' : ''}`}
+              >
+                Overview
+              </NavLink>
+            </div>
 
-          {navSections.map((section) => {
-            const isSectionActive = normalizedPath.startsWith(section.base)
+            {navSections.map((section) => {
+              const isSectionActive = normalizedPath.startsWith(section.base)
 
-            return (
-              <div key={section.key} className={`ri-nav-row ${isSectionActive ? 'is-active' : ''}`}>
-                <span className={`ri-icon-cell ri-icon-cell--muted ${isSectionActive ? 'is-active' : ''}`}>{section.icon}</span>
-                <div className="ri-nav-group">
-                  <p className={`ri-nav-heading ${isSectionActive ? 'is-active' : ''}`}>{section.title}</p>
-                  <ul className="ri-nav-list">
-                    {section.items.map((item) => (
-                      <li key={item.key}>
-                        <NavLink
-                          to={item.to}
-                          className={({ isActive }) => `ri-nav-item-btn ${isActive ? 'is-active' : ''}`}
-                        >
-                          {item.label}
-                        </NavLink>
-                      </li>
-                    ))}
-                  </ul>
+              return (
+                <div key={section.key} className={`ri-nav-row ${isSectionActive ? 'is-active' : ''}`}>
+                  <span className={`ri-icon-cell ri-icon-cell--muted ${isSectionActive ? 'is-active' : ''}`}>{section.icon}</span>
+                  <div className="ri-nav-group">
+                    <p className={`ri-nav-heading ${isSectionActive ? 'is-active' : ''}`}>{section.title}</p>
+                    <ul className="ri-nav-list">
+                      {section.items.map((item) => (
+                        <li key={item.key}>
+                          <NavLink to={item.to} className={({ isActive }) => `ri-nav-item-btn ${isActive ? 'is-active' : ''}`}>
+                            {item.label}
+                          </NavLink>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
-              </div>
-            )
-          })}
-        </aside>
+              )
+            })}
+          </aside>
 
-        <section className="ri-content">
-          <div className="ri-content-topbar">
-            <Link to="/" className="ri-content-logout-btn" aria-label="Logout and go back to Product Hub">
-              <LogoutIcon />
-              <span>Logout</span>
-            </Link>
-          </div>
-          <div className="ri-content-body">{children}</div>
+          <section className="ri-content">
+            <div className="ri-content-topbar">
+              <Link to={riTargetingToolRoutes.home} className="ri-content-logout-btn" aria-label="Go to overview home page">
+                <LogoutIcon />
+                <span>Logout</span>
+              </Link>
+            </div>
+            <div className="ri-content-body">{children}</div>
+          </section>
         </section>
       </section>
-    </MainPageLayout>
+    </main>
   )
 }
 
