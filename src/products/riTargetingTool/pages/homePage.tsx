@@ -2,7 +2,14 @@ import React from 'react'
 import { ProductPageLayout } from '../component/productPageLayout'
 import { TopFilterRow } from '../component/topFilterRow'
 
-const summaryMetrics = [
+type SummaryMetric = {
+  id: string
+  label: string
+  value: string
+  tone: 'blue' | 'neutral' | 'green' | 'orange'
+  isTrend?: boolean
+}
+const summaryMetrics: SummaryMetric[] = [
   { id: 'ytd-suppr', label: 'YTD\nsuppressions', value: '600k', tone: 'blue' },
   { id: 'current-suppr', label: 'Currently\nsuppressed', value: '339k', tone: 'neutral' },
   { id: 'saved-visits', label: 'YTD estimated\nsaved visits', value: '42k', tone: 'neutral' },
@@ -11,7 +18,7 @@ const summaryMetrics = [
   { id: 'eoy-savings', label: 'Estimated EOY\nnet Savings (Aetna)', value: '$19M', tone: 'orange' },
 ]
 
-const optumSummaryMetrics = [
+const optumSummaryMetrics: SummaryMetric[] = [
   { id: 'optum-ytd-suppr', label: 'YTD\nsuppressions', value: '540k', tone: 'blue' },
   { id: 'optum-current-suppr', label: 'Currently\nsuppressed', value: '312k', tone: 'neutral' },
   { id: 'optum-saved-visits', label: 'YTD estimated\nsaved visits', value: '36k', tone: 'neutral' },
@@ -20,7 +27,7 @@ const optumSummaryMetrics = [
   { id: 'optum-eoy-savings', label: 'Estimated EOY\nnet Savings (Aetna)', value: '$16M', tone: 'orange' },
 ]
 
-const getMetricValueToneClass = (metric) => {
+const getMetricValueToneClass = (metric: SummaryMetric) => {
   if (metric.isTrend) {
     const isNegative = String(metric.value).trim().startsWith('-')
     return isNegative ? 'ri-kpi-value--red' : 'ri-kpi-value--green'
